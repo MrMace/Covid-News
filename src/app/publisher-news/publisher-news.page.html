@@ -30,6 +30,15 @@
         </ion-card-content>
       </ion-card>
     </ion-col>
+    <ion-col *ngIf='!articleList.length && !showPageLoader'>
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>
+            Currently No Headlines About the Virus!
+          </ion-card-title>
+        </ion-card-header>
+      </ion-card>
+    </ion-col>
   </ion-row>
 </ion-grid>
 </ion-content>

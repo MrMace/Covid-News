@@ -7,14 +7,6 @@ const routes: Routes = [
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   },
   {
-    path: 'todo',
-    loadChildren: () => import('./todo/todo.module').then( m => m.TodoPageModule)
-  },
-  {
-    path: 'todo-detail',
-    loadChildren: () => import('./todo-detail/todo-detail.module').then( m => m.TodoDetailPageModule)
-  },
-  {
     path: 'news-detail',
     loadChildren: () => import('./news-detail/news-detail.module').then( m => m.NewsDetailPageModule)
   },

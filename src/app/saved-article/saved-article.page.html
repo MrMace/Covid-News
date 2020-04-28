@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="tabs/Home"></ion-back-button>
+      <ion-back-button defaultHref="tabs/home"></ion-back-button>
     </ion-buttons>
     <ion-title>Publishers</ion-title>
   </ion-toolbar>
@@ -24,10 +24,19 @@
                 <ion-button expand="block" color="secondary" (click)="getNewsDetailPage(article)">View</ion-button>
               </ion-col>
               <ion-col>
-                <ion-button expand="block" color="secondary" fill="outline" (click)="saveArticle(article)">Remove</ion-button>
+                <ion-button expand="block" color="secondary" fill="outline" (click)="removeArticle(article.url)">Remove</ion-button>
               </ion-col>
             </ion-row>
           </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col *ngIf='!articleList.length && !showPageLoader'>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>
+              Currently No Saved Articles!
+            </ion-card-title>
+          </ion-card-header>
         </ion-card>
       </ion-col>
     </ion-row>
