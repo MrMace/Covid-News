@@ -27,7 +27,11 @@ export class SavedArticlePage implements OnInit {
   //gets the articles
   async getArticles(){
     this.showPageLoader = true;
-    this.articleList = await this.storage.get('savedArticles');
+    const result = await this.storage.get('savedArticles');
+    if(result !=null){
+      this.articleList = result;
+    }
+  
     this.showPageLoader = false;
   }
 

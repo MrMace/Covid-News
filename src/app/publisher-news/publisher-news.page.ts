@@ -47,18 +47,31 @@ export class PublisherNewsPage implements OnInit {
 
   }
 
- //saves article in the local storage. 
- async saveArticle(article) {
-  const result = await this.storage.get('savedArticles'); 
-  if(result != null){
-    result.push(article);
-    this.storage.set('savedArticles', result);
-  }else {
-    await this.storage.set('savedArticles', [article]);
+
+  //saves article in the local storage. 
+  async saveArticle(article) {
+
+    try {
+
+      const result = await this.storage.get('savedArticles');
+      if (result != null) {
+        const existingArticleList = result.filter(item => item.url === article.url);
+        if (existingArticleList.length) {
+          throw new Error("Article already saved!")
+        }
+        result.push(article);
+        this.storage.set('savedArticles', result);
+      } else {
+        await this.storage.set('savedArticles', [article]);
+      }
+      this.widgetUtilService.presentToast("Article Saved Success!")
+
+    } catch (error) {
+      this.widgetUtilService.presentToast(error.message);
+    }
+
   }
-  this.widgetUtilService.presentToast("Article Saved Success!")
-  }
-  
+
 
     async getNewsDetailPage(article){
       await this.storage.set('currentArticle', article);

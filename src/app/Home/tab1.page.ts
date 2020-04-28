@@ -4,6 +4,7 @@ import { NewsApiService } from '../services/news-api.service';
 import { WidgetUtilService } from '../services/widget-util.service';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
+import { HelperService } from '../services/helper.service';
 
 @Component({
   selector: 'app-tab1',
@@ -20,7 +21,7 @@ export class Tab1Page {
 
 
 
-  constructor(public newsApiService: NewsApiService, private widgetUtilService: WidgetUtilService, private router: Router, private storage: Storage) {
+  constructor(public newsApiService: NewsApiService, private widgetUtilService: WidgetUtilService, private router: Router, private storage: Storage, private helperService: HelperService) {
 
     this.getTopHeadlines(this.selectedCountry.code);
   }
@@ -56,14 +57,15 @@ export class Tab1Page {
 
   //saves article in the local storage. 
   async saveArticle(article) {
-  const result = await this.storage.get('savedArticles'); 
-  if(result != null){
-    result.push(article);
-    this.storage.set('savedArticles', result);
-  }else {
-    await this.storage.set('savedArticles', [article]);
-  }
-  this.widgetUtilService.presentToast("Article Saved Success!")
+
+    try {
+      await this.helperService.saveArticle(article);
+      this.widgetUtilService.presentToast("Article Saved Success!")
+
+    } catch (error) {
+      this.widgetUtilService.presentToast(error.message);
+    }
+
   }
 
   // Refreshes whe pulled down
