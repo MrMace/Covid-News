@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{publisherName}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-grid fixed>
+  <ion-row>
+    <ion-col *ngFor="let article of articleList" size="12" size-md="6" size-lg="4">
+      <ion-card  *ngIf="!showPageLoader">
+        <ion-img src="{{article.urlToImage}}"></ion-img>
+        <ion-card-header>
+          <ion-card-title>
+            {{ article.title }}
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-row>
+            <ion-col>
+              <ion-button expand="block" color="secondary" (click)="getNewsDetailPage(article)">View</ion-button>
+            </ion-col>
+            <ion-col>
+              <ion-button expand="block" color="secondary" fill="outline" (click)="saveArticle(article)">Save</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+</ion-content>

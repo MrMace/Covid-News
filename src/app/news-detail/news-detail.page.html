@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>News Detail</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid fixed>
+    <ion-row class="ion-justify-content-center">
+      <ion-col  size="12" size-sm="6" size-md="6" size-lg="4" *ngIf="!showPageLoader" >
+          <ion-card class='ion-margin-top' >
+            <ion-img src="{{article.urlToImage}}"></ion-img>
+            <ion-card-header>
+              <ion-card-title>
+                {{ article.title }} 
+              </ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              {{ article.description }}
+            </ion-card-content>
+          </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-spinner name="lines" color="secondary" class="page-loader" *ngIf="showPageLoader"></ion-spinner>
+  </ion-grid>
+</ion-content>

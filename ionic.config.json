@@ -1,5 +1,7 @@
 {
   "name": "Covid-News",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

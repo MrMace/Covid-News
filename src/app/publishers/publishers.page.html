@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs/Home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Publishers</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid fixed>
+    <ion-row class="ion-justify-content-center">
+      <ion-col *ngFor="let publisher of publishers" size="12" size-xs="5" size-sm="4" size-md="4" size-lg="2">
+        <ion-card class="publisher-card" (click)='goToPublisherNews(publisher)'>
+          <ion-card-header class="ion-text-center">
+            <strong>
+              {{ publisher.name }}
+            </strong>
+            
+            <ion-card-content>
+              <ion-img src="{{publisher.logo}}"></ion-img>
+            </ion-card-content>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
