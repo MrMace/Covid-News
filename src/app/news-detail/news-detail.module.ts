@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { NewsDetailPageRoutingModule } from './news-detail-routing.module';
 
 import { NewsDetailPage } from './news-detail.page';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    NewsDetailPageRoutingModule
+    NewsDetailPageRoutingModule,
+    InAppBrowser,
   ],
   declarations: [NewsDetailPage]
 })
