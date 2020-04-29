@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import { NewsApiService } from '../services/news-api.service';
 import { WidgetUtilService } from '../services/widget-util.service';
+import { HelperService } from '../services/helper.service';
 
 @Component({
   selector: 'app-publisher-news',
@@ -15,7 +16,7 @@ export class PublisherNewsPage implements OnInit {
   showPageLoader: boolean = false;
   publisherName: string = '';
 
-  constructor(private activatedRoute: ActivatedRoute , private newsApiService: NewsApiService, private widgetUtilService: WidgetUtilService, private storage: Storage, private router: Router ) {
+  constructor(private activatedRoute: ActivatedRoute , private newsApiService: NewsApiService, private widgetUtilService: WidgetUtilService, private storage: Storage, private router: Router,private helperService: HelperService ) {
     this.activatedRoute.queryParams.subscribe(result => {
       console.log('query params == ',result)
       if(result.code && result.name){
@@ -48,29 +49,18 @@ export class PublisherNewsPage implements OnInit {
   }
 
 
-  //saves article in the local storage. 
-  async saveArticle(article) {
+ //saves article in the local storage. 
+ async saveArticle(article) {
 
-    try {
+  try {
+    await this.helperService.saveArticle(article);
+    this.widgetUtilService.presentToast("Article Saved Success!")
 
-      const result = await this.storage.get('savedArticles');
-      if (result != null) {
-        const existingArticleList = result.filter(item => item.url === article.url);
-        if (existingArticleList.length) {
-          throw new Error("Article already saved!")
-        }
-        result.push(article);
-        this.storage.set('savedArticles', result);
-      } else {
-        await this.storage.set('savedArticles', [article]);
-      }
-      this.widgetUtilService.presentToast("Article Saved Success!")
-
-    } catch (error) {
-      this.widgetUtilService.presentToast(error.message);
-    }
-
+  } catch (error) {
+    this.widgetUtilService.presentToast(error.message);
   }
+
+}
 
 
     async getNewsDetailPage(article){
