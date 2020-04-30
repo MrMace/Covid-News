@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { NewsDetailPageRoutingModule } from './news-detail-routing.module';
 
 import { NewsDetailPage } from './news-detail.page';
-import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+// import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 @NgModule({
   imports: [
@@ -15,7 +15,6 @@ import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
     FormsModule,
     IonicModule,
     NewsDetailPageRoutingModule,
-    InAppBrowser,
   ],
   declarations: [NewsDetailPage]
 })

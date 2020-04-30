@@ -31,15 +31,18 @@ export class SavedArticlePage implements OnInit {
     if(result !=null){
       this.articleList = result;
     }
-  
     this.showPageLoader = false;
   }
 
+  
+
+
   //opens news details page 
   async getNewsDetailPage(article){
-    await this.storage.set('currentArticles', article);
+    await this.storage.set('currentArticle', article);
     this.router.navigate(['/news-detail']);
   }
+
 
   removeArticle(url){
     this.widgetUtilService.presentAlertConfirm('Confirm', 'Are you sure you want to remove this article? ', [{

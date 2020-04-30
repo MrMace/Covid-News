@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
-import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+// import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 @Component({
   selector: 'app-news-detail',
@@ -32,17 +32,16 @@ export class NewsDetailPage implements OnInit {
 
  
 
-  constructor(private storage: Storage,public theInAppBrowser: InAppBrowser ) {
+  constructor(private storage: Storage ) {
     this.getArticle();
     
    }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
-  public openInAppBrowser(url){
-    this.theInAppBrowser.create(url);
-}
+//   public openInAppBrowser(url){
+//     this.theInAppBrowser.create(url);
+// }
 
   async getArticle(){
     this.showPageLoader = true;
